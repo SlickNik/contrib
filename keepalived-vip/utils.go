@@ -235,6 +235,7 @@ func loadIPVModule() error {
 		return err
 	}
 
+	glog.Info("Modprobe finished. Now stat'ing /proc/net/ip_vs")
 	_, err = os.Stat("/proc/net/ip_vs")
 	return err
 }
@@ -244,6 +245,7 @@ func loadIPVModule() error {
 func changeSysctl() error {
 	sys := sysctl.New()
 	for k, v := range sysctlAdjustments {
+		glog.Info("Adjusting Sysctl key:%s value:%s", k, v)
 		if err := sys.SetSysctl(k, v); err != nil {
 			return err
 		}

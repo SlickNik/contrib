@@ -42,5 +42,7 @@ RUN mkdir -p /etc/keepalived && \
 COPY kube-keepalived-vip /
 COPY keepalived.tmpl /
 COPY keepalived.conf /etc/keepalived
+COPY ip_vs.ko /
+COPY entrypoint.sh /
 
-ENTRYPOINT ["/kube-keepalived-vip"]
+ENTRYPOINT ["/entrypoint.sh"]

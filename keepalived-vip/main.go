@@ -103,16 +103,19 @@ func main() {
 		glog.Infof("watching namespace: '%v'", namespace)
 	}
 
-	err = loadIPVModule()
-	if err != nil {
-		glog.Fatalf("unexpected error: %v", err)
-	}
+	glog.Info("Loading IPVModule")
+	//err = loadIPVModule()
+	//if err != nil {
+	//	glog.Fatalf("unexpected error: %v", err)
+	//}
 
+	glog.Info("ChangeSysctl")
 	err = changeSysctl()
 	if err != nil {
 		glog.Fatalf("unexpected error: %v", err)
 	}
 
+	glog.Info("Reset IPVS")
 	err = resetIPVS()
 	if err != nil {
 		glog.Fatalf("unexpected error: %v", err)
